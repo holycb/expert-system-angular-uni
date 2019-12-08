@@ -1,0 +1,20 @@
+:host {
+  --space: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-expansion-panel-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mat-expansion-panel-buttons > * {
+  margin-left: var(--space);
+}

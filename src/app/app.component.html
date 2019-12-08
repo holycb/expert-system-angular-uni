@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <ul>
+    <li>
+      <a routerLink="" routerLinkActive="active-nav-link">
+        Home
+      </a>
+    </li>
+    <li>
+      <mat-slide-toggle
+        (change)="onRoleChange($event.checked)"
+        color="primary"
+      ></mat-slide-toggle>
+    </li>
+  </ul>
+</mat-toolbar>
+<main>
+  <router-outlet></router-outlet>
+</main>
