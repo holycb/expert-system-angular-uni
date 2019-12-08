@@ -1,0 +1,76 @@
+<div class="page">
+  <ng-container *ngIf="thematics$ | async as thematics; else loading">
+    <ng-container *ngIf="thematics.length; else noThematics">
+      <header>
+        <h1>
+          Выбор тематики
+        </h1>
+        <ng-container *ngTemplateOutlet="addThematic"></ng-container>
+      </header>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let thematic of thematics">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ thematic.name | titlecase }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ thematic.questions.length }} вопросов.
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <p>
+            {{ thematic.description }}
+          </p>
+          <div class="mat-expansion-panel-buttons">
+            <a
+              mat-raised-button
+              [routerLink]="['/thematic', thematic.id]"
+              color="primary"
+              *ngIf="thematic.questions.length > 0"
+            >
+              Открыть
+            </a>
+            <ng-template [ngxPermissionsOnly]="Role.Admin">
+              <button
+                mat-mini-fab
+                title="Удалить тематику"
+                color="danger"
+                (click)="onRemoveClick(thematic)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <a
+                [routerLink]="['/thematic', 'edit', thematic.id]"
+                mat-mini-fab
+                title="Изменить тематику"
+                color="danger"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+            </ng-template>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
+    <ng-template #noThematics>
+      <h1>
+        Нет созданных тематик
+      </h1>
+      <ng-container *ngTemplateOutlet="addThematic"></ng-container>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #addThematic>
+    <button
+      mat-icon-button
+      title="Создать новую тематику"
+      (click)="onNewThematicClick()"
+    >
+      <mat-icon>library_add</mat-icon>
+    </button>
+  </ng-template>
+
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+</div>
