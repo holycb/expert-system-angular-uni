@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ThematicsService } from 'src/app/core/services/thematics.service';
 import { Role } from 'src/app/core/models/role';
 import { Thematic } from 'src/app/core/models/thematic';
+import { MatDialog } from '@angular/material/dialog';
+
+import { CreateThematicDialog } from './dialogs/create-thematic-dialog/create-thematic-dialog.component';
 
 @Component({
   selector: 'app-thematic-selection-page',
@@ -24,9 +27,11 @@ export class ThematicSelectionPageComponent {
    * Constructor.
    *
    * @param thematicsService Thematics service.
+   * @param dialog MatDialog service.
    */
   public constructor(
     private thematicsService: ThematicsService,
+    private dialog: MatDialog,
   ) { }
 
   /**
@@ -42,6 +47,7 @@ export class ThematicSelectionPageComponent {
    * Create new thematic.
    */
   public onNewThematicClick(): void {
+    this.dialog.open(CreateThematicDialog);
   }
 }
 

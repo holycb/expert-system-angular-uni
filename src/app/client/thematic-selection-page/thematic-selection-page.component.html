@@ -61,13 +61,15 @@
   </ng-container>
 
   <ng-template #addThematic>
-    <button
-      mat-icon-button
-      title="Создать новую тематику"
-      (click)="onNewThematicClick()"
-    >
-      <mat-icon>library_add</mat-icon>
-    </button>
+    <ng-template [ngxPermissionsOnly]="Role.Admin">
+      <button
+        mat-icon-button
+        title="Создать новую тематику"
+        (click)="onNewThematicClick()"
+      >
+        <mat-icon>library_add</mat-icon>
+      </button>
+    </ng-template>
   </ng-template>
 
   <ng-template #loading>

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
+import { ValidationErrors, AsyncValidatorFn, FormControl } from '@angular/forms';
+
 import { Thematic } from '../models/thematic';
 
 
@@ -42,4 +44,33 @@ export class ThematicsService {
       delay(2000),
     );
   }
+
+  /**
+   * Create new thematic.
+   *
+   * @param thematic Thematic.
+   * @returns Void.
+   */
+  public createThematic(thematic: Thematic): Observable<Thematic> {
+
+    // TODO (Viktor): Save the thematic and give it an ID.
+    return of(new Thematic({ ...thematic, id: '123123' })).pipe(
+      delay(2000),
+    );
+  }
+
+  /**
+   * Forbid existing thematic validator.
+   * @returns Validation func.
+   */
+  public get forbidExistingThematic(): AsyncValidatorFn {
+    return (control: FormControl): Observable<ValidationErrors> => {
+      const name = control.value;
+
+      // TODO (Viktor): Check for thematic existing and return error if there is such thematic.
+
+      return of(null);
+    };
+  }
+
 }

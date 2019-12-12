@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { NgxPermissionsService } from 'ngx-permissions';
 
-import { Role } from './core/models/role';
 import { DOCUMENT } from '@angular/common';
+
+import { Role } from './core/models/role';
 
 
 @Component({
@@ -39,9 +40,9 @@ export class AppComponent {
   public onRoleChange(isAdmin: boolean): void {
     if (isAdmin) {
       this.permService.loadPermissions([Role.Admin]);
-      this.document.documentElement.style.setProperty('--background-color', 'rgba(194,24,91,.35)');
+      this.document.documentElement.style.setProperty('--background-color', 'var(--secondary-background)');
     } else {
-      this.document.documentElement.style.setProperty('--background-color', '#212121');
+      this.document.documentElement.style.setProperty('--background-color', 'var(--default-background)');
       this.permService.removePermission(Role.Admin);
     }
   }

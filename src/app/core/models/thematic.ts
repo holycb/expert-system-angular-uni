@@ -1,5 +1,3 @@
-import { Question } from './question';
-import { Class } from './class';
 
 /**
  * Thematic.
@@ -39,10 +37,10 @@ export class Thematic {
    * @param thematic Thematic.
    */
   public constructor(thematic: Partial<Thematic>) {
-    this.classes = thematic.classes;
+    this.classes = thematic.classes || [];
     this.description = thematic.description;
     this.name = thematic.name;
-    this.questions = thematic.questions;
+    this.questions = thematic.questions || [];
     this.id = thematic.id;
   }
 }

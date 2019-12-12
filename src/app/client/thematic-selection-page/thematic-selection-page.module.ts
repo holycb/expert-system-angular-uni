@@ -11,8 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ThematicSelectionPageComponent } from './thematic-selection-page.component';
+import { CreateThematicDialog } from './dialogs/create-thematic-dialog/create-thematic-dialog.component';
 
 const routes: Routes = [
   {
@@ -23,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ThematicSelectionPageComponent],
+  declarations: [ThematicSelectionPageComponent, CreateThematicDialog],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -32,7 +38,12 @@ const routes: Routes = [
     MatButtonModule,
     NgxPermissionsModule.forChild(),
     MatIconModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
+  entryComponents: [CreateThematicDialog],
 })
 
 /**
