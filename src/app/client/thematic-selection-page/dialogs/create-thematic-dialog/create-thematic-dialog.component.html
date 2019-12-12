@@ -1,13 +1,16 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <button
-    mat-icon-button
-    color="primary"
-    type="button"
-    (click)="onCancelClick()"
-    [disabled]="isLoading$ | async"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+  <header>
+    <h2>Новая тематика</h2>
+    <button
+      mat-icon-button
+      color="primary"
+      type="button"
+      (click)="onCancelClick()"
+      [disabled]="isLoading$ | async"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
 
   <mat-form-field>
     <input matInput [formControl]="form.get('name')" placeholder="Название" />
