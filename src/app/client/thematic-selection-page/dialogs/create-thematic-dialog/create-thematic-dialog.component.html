@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <button
+    mat-icon-button
+    color="primary"
+    type="button"
+    (click)="onCancelClick()"
+    [disabled]="isLoading$ | async"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <input matInput [formControl]="form.get('name')" placeholder="Название" />
+    <mat-error *ngIf="form.get('name').invalid">
+      Поле не валидно
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      [formControl]="form.get('description')"
+      placeholder="Описание"
+    ></textarea>
+    <mat-error *ngIf="form.get('description').invalid">
+      Поле не валидно
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    [disabled]="isLoading$ | async"
+    mat-flat-button
+    color="primary"
+    type="submit"
+  >
+    Создать
+  </button>
+</form>
