@@ -1,1 +1,111 @@
-<p>thematic-edit-page works!</p>
+<div class="page">
+  <ng-container *ngIf="thematic$ | async as thematic; else loading">
+    <h1>{{ thematic.name | titlecase }}</h1>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Классы" *ngIf="classes$ | async as classes; else loading">
+        <header>
+          <ng-container *ngIf="classes.length; else noResultsTemplate">
+            <h2>Текущий список классов</h2>
+          </ng-container>
+          <ng-template #noResultsTemplate>
+            <h2>Нет созданых классов</h2>
+          </ng-template>
+
+          <button mat-icon-button>
+            <mat-icon>library_add</mat-icon>
+          </button>
+        </header>
+        <mat-list>
+          <mat-list-item *ngFor="let class of classes">
+            <div class="list-item-content">
+              <span class="class-name">
+                {{ class.name }}
+              </span>
+              <span class="class-probability">
+                {{ class.probability | number }}
+              </span>
+              <button mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="Вопросы">
+        <header>
+          <ng-container
+            *ngIf="(questions$ | async).length; else noResultsTemplate"
+          >
+            <h2>Текущий список вопросов</h2>
+          </ng-container>
+          <ng-template #noResultsTemplate>
+            <h2>Нет созданых вопросов</h2>
+          </ng-template>
+
+          <button mat-icon-button>
+            <mat-icon>library_add</mat-icon>
+          </button>
+        </header>
+        <ng-container *ngIf="columns$ | async as columns">
+          <ng-container *ngIf="(questions$ | async).length">
+            <table mat-table #table [dataSource]="questions$">
+              <ng-container matColumnDef="text">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">{{ row.text }}</td>
+              </ng-container>
+
+              <ng-container *ngFor="let class of classes$ | async">
+                <ng-container [matColumnDef]="class.id">
+                  <th mat-header-cell *matHeaderCellDef>{{ class.name }}</th>
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container
+                      *ngIf="
+                        extractProbability(row, class.id);
+                        else emptyCellTemplate
+                      "
+                    >
+                      <div>
+                        <span>
+                          {{
+                            extractProbability(row, class.id)
+                              .positiveProbability
+                          }}
+                        </span>
+                        <hr />
+                        <span>
+                          {{
+                            extractProbability(row, class.id)
+                              .negativeProbability
+                          }}
+                        </span>
+                      </div>
+                    </ng-container>
+                    <ng-template #emptyCellTemplate>
+                      <div class="empty-cell">
+                        <button mat-icon-button>
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </ng-template>
+                  </td>
+                </ng-container>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="['text'].concat(columns)"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: ['text'].concat(columns)"
+              ></tr>
+            </table>
+          </ng-container>
+        </ng-container>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+</div>

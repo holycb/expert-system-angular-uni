@@ -1,4 +1,16 @@
-import { ClassProbability } from './class-probability';
+
+/** Class probability considering an answer. */
+export interface IClassProbability {
+
+  /** Class id. */
+  classId: number;
+
+  /** Probability of class with negative answer. */
+  negativeProbability: number;
+
+  /** Probability of class with positive answer. */
+  positiveProbability: number;
+}
 
 /**
  * Question.
@@ -13,7 +25,20 @@ export class Question {
   /**
    * Class probabilities.
    */
-  public classProbabilities: ClassProbability[];
+  public classProbabilities: IClassProbability[];
 
+  /**
+   * Constructor.
+   *
+   * @param text Name.
+   * @param classProbabilities Probability.
+   */
+  public constructor(
+    text: string,
+    classProbabilities: IClassProbability[],
+  ) {
+    this.classProbabilities = classProbabilities;
+    this.text = text;
+  }
 }
 

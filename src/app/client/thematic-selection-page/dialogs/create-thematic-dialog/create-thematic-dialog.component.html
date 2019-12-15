@@ -13,7 +13,12 @@
   </header>
 
   <mat-form-field>
-    <input matInput [formControl]="form.get('name')" placeholder="Название" />
+    <input
+      matInput
+      autocomplete="off"
+      [formControl]="form.get('name')"
+      placeholder="Название"
+    />
     <mat-error *ngIf="form.get('name').invalid">
       Поле не валидно
     </mat-error>

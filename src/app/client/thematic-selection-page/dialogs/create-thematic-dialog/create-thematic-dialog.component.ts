@@ -65,7 +65,7 @@ export class CreateThematicDialog {
           this.notification.simpleNotify(
             `Создание ${newThematic.name} успешно!`,
             'Продолжить',
-            () => this.router.navigate(['create', thematic.id]),
+            () => this.router.navigate(['thematic', 'edit', thematic.id]),
           );
           this.dialogRef.close();
         }),

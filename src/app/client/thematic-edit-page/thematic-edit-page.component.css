@@ -1,0 +1,50 @@
+.class-name {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  filter: brightness(0.7);
+  transition-duration: 300ms;
+}
+
+.list-item-content button {
+  opacity: 0;
+}
+
+.list-item-content:hover {
+  filter: brightness(1);
+}
+
+.list-item-content:hover button {
+  opacity: 1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.empty-cell {
+  background: var(--secondary-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.empty-cell button {
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.empty-cell button:hover {
+  opacity: 1;
+}

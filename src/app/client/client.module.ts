@@ -4,11 +4,9 @@ import { CommonModule } from '@angular/common';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { ClientRoutingModule } from './client-routing.module';
-import { ThematicEditPageComponent } from './thematic-edit-page/thematic-edit-page.component';
-
 
 @NgModule({
-  declarations: [ThematicEditPageComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ClientRoutingModule,

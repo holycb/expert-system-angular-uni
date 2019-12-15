@@ -12,6 +12,11 @@ export class Class {
   private p: number;
 
 
+  public get id(): string {
+    return this.name.split(' ').join('-').toLowerCase();
+  }
+
+
   /**
    * Probability setter.
    * @param probability Probability.
@@ -31,5 +36,20 @@ export class Class {
    */
   public get probability(): number {
     return this.p;
+  }
+
+
+  /**
+   * Constructor.
+   *
+   * @param name Name.
+   * @param probability Probability.
+   */
+  public constructor(
+    name: string,
+    probability: number,
+  ) {
+    this.probability = probability;
+    this.name = name;
   }
 }

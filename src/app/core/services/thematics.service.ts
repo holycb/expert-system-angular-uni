@@ -22,6 +22,18 @@ export class ThematicsService {
   public constructor() { }
 
   /**
+   * Get thematic by id.
+   *
+   * @param id Thematic id.
+   * @returns Thematic.
+   */
+  public getThematicById(id: string): Observable<Thematic> {
+    return of(new Thematic({ id, name: 'Test thematic', description: '123' })).pipe(
+      delay(1000),
+    );
+  }
+
+  /**
    * Get thematics.
    *
    * @returns Thematics.
